@@ -3,6 +3,7 @@ package com.example.sudoku
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -33,6 +34,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -54,7 +56,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    SudokuApp()
+                    GreetingPreview()
                 }
             }
         }
@@ -132,7 +134,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun GameScreen() {
     Column(
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Spacer(modifier = Modifier.height(20.dp))
 
@@ -226,7 +228,7 @@ fun GameScreen() {
 //}
 
 @Composable
-fun SplashScreen() {
+fun SplashScreen(moveToHomeScreen: () -> Unit) {
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -239,30 +241,47 @@ fun SplashScreen() {
         )
 
         Column(
-
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier
+                .fillMaxWidth()
+                .offset(y = 220.dp)
         ) {
             Text(
                 text = "sudoku".uppercase(),
-                fontFamily = FontFamily.SansSerif
+                fontFamily = FontFamily(Font(R.font.bauhs93)),
+                fontSize = 72.sp,
             )
             Text(
                 text = "hh".uppercase(),
+                fontFamily = FontFamily(Font(R.font.algerianregular)),
+                fontSize = 56.sp,
             )
         }
         Button(
             modifier = Modifier
 //                .width(80.dp)
                 .fillMaxWidth()
-                .padding(start = 288.dp, end = 20.dp, top = 20.dp)
+                .padding(start = 280.dp, end = 20.dp, top = 20.dp),
 //                .offset(y = 200.dp)
-                .border(
-                    width = 2.dp,
-                    color = Color.Black,
-                    shape = RoundedCornerShape(10.dp)
-                ),
-            onClick = {},
+//                .border(
+//                    width = 2.dp,
+//                    color = Color.Black,
+//                    shape = RoundedCornerShape(12.dp)
+//                ),
+            onClick = { moveToHomeScreen() },
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color.White
+            ),
+            shape = RoundedCornerShape(16.dp),
+            border = BorderStroke(2.dp, Color.Black)
         ) {
-            Text("next")
+            Text(
+                text = "Skip".uppercase(),
+                fontFamily = FontFamily(Font(R.font.algerianregular)),
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.Black,
+            )
         }
 
         Image(
@@ -289,23 +308,23 @@ fun HomeScreen() {
             modifier = Modifier
                 .matchParentSize()
         )
-
-        Image(
-            painter = painterResource(id = R.drawable.splash_background),
-            contentDescription = "hungnh219",
-            contentScale = ContentScale.FillBounds,
-            modifier = Modifier
-                .matchParentSize()
-        )
+//
+//        Image(
+//            painter = painterResource(id = R.drawable.splash_background),
+//            contentDescription = "hungnh219",
+//            contentScale = ContentScale.FillBounds,
+//            modifier = Modifier
+//                .matchParentSize()
+//        )
     }
 }
 
 @Composable
 fun SudokuApp(modifier: Modifier = Modifier) {
 
-//    HomeScreen()
+    HomeScreen()
 //    GameScreen()
-    SplashScreen()
+//    SplashScreen()
 }
 
 // su dung navigation tu ham nay
@@ -319,8 +338,20 @@ fun GreetingPreview() {
 
     SudokuTheme {
         NavHost(navController = navController, startDestination = "home") {
+
+            // route: home
             composable("home") {
-                SudokuApp()
+                HomeScreen()
+            }
+
+            // route: splash
+            composable("splash") {
+                SplashScreen( moveToHomeScreen = { navController.navigate("home")})
+            }
+
+            // route: game
+            composable("game") {
+                GameScreen()
             }
         }
 //        SudokuApp()
