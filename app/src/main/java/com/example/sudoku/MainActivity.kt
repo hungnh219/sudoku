@@ -39,6 +39,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.sudoku.ui.theme.SudokuTheme
 
 class MainActivity : ComponentActivity() {
@@ -61,70 +64,70 @@ class MainActivity : ComponentActivity() {
 //fun Plus2Numbers(firstNum: Int, secondNum: Int) {
 //    return firstNum + secondNum;
 //}
-
-@Composable
-fun HomeScreen() {
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Spacer(modifier = Modifier.height(60.dp))
-
-        Text(
-            text = "this is the sudoku board!",
-            fontSize = 24.sp,
-            fontWeight = FontWeight.Bold,
-            textAlign = TextAlign.Center,
-            modifier = Modifier
-                .background(Color.Red)
-                .fillMaxWidth()
-                .padding(horizontal = 20.dp)
-        )
-
-        Spacer(modifier = Modifier.height(40.dp))
-
-        Image(
-            painter = painterResource(id = R.drawable.logo),
-            contentDescription = "hungnh219",
-            modifier = Modifier
-                .clip(RoundedCornerShape(45))
-                .size(height = 300.dp, width = 700.dp)
-        )
-
-        Spacer(modifier = Modifier.height(80.dp))
-
-        Button(
-            onClick = {},
-            colors = ButtonDefaults.buttonColors(
-                contentColor = Color.Green,
-                containerColor = Color.Gray
-            ),
-            modifier = Modifier
-                .width(300.dp)
-        ) {
-            Text("Continue")
-        }
-
-        Spacer(modifier = Modifier.height(20.dp))
-
-        Button(
-            onClick = {},
-            modifier = Modifier
-                .width(300.dp)
-        ) {
-            Text("New game")
-        }
-
-        Spacer(modifier = Modifier.height(20.dp))
-
-        Button(
-            onClick = {},
-            modifier = Modifier
-                .width(300.dp)
-        ) {
-            Text("About us")
-        }
-    }
-}
+//
+//@Composable
+//fun HomeScreen() {
+//    Column(
+//        horizontalAlignment = Alignment.CenterHorizontally
+//    ) {
+//        Spacer(modifier = Modifier.height(60.dp))
+//
+//        Text(
+//            text = "this is the sudoku board!",
+//            fontSize = 24.sp,
+//            fontWeight = FontWeight.Bold,
+//            textAlign = TextAlign.Center,
+//            modifier = Modifier
+//                .background(Color.Red)
+//                .fillMaxWidth()
+//                .padding(horizontal = 20.dp)
+//        )
+//
+//        Spacer(modifier = Modifier.height(40.dp))
+//
+//        Image(
+//            painter = painterResource(id = R.drawable.logo),
+//            contentDescription = "hungnh219",
+//            modifier = Modifier
+//                .clip(RoundedCornerShape(45))
+//                .size(height = 300.dp, width = 700.dp)
+//        )
+//
+//        Spacer(modifier = Modifier.height(80.dp))
+//
+//        Button(
+//            onClick = {},
+//            colors = ButtonDefaults.buttonColors(
+//                contentColor = Color.Green,
+//                containerColor = Color.Gray
+//            ),
+//            modifier = Modifier
+//                .width(300.dp)
+//        ) {
+//            Text("Continue")
+//        }
+//
+//        Spacer(modifier = Modifier.height(20.dp))
+//
+//        Button(
+//            onClick = {},
+//            modifier = Modifier
+//                .width(300.dp)
+//        ) {
+//            Text("New game")
+//        }
+//
+//        Spacer(modifier = Modifier.height(20.dp))
+//
+//        Button(
+//            onClick = {},
+//            modifier = Modifier
+//                .width(300.dp)
+//        ) {
+//            Text("About us")
+//        }
+//    }
+//}
 
 @Composable
 fun GameScreen() {
@@ -186,44 +189,44 @@ fun GameScreen() {
         }
     }
 }
+//
+//@Composable
+//fun FlashScreen() {
+//    Column(
+//        horizontalAlignment = Alignment.CenterHorizontally
+//    ) {
+//        Spacer(modifier = Modifier.height(40.dp))
+//
+//        Image(
+//            painter = painterResource(id = R.drawable.logo),
+//            contentDescription = "hungnh219",
+//            modifier = Modifier
+//                .fillMaxWidth()
+//        )
+//
+//        Spacer(modifier = Modifier.height(60.dp))
+//
+//        Text(
+//            text = "Welcome to Sudoku Game",
+//            fontSize = 32.sp,
+//            fontWeight = FontWeight.Bold
+//        )
+//
+//        Spacer(modifier = Modifier.height(60.dp))
+//
+//        Button(
+//            onClick = {},
+//            modifier = Modifier
+//                .width(200.dp)
+//                .height(60.dp)
+//        ) {
+//            Text("next")
+//        }
+//    }
+//}
 
 @Composable
-fun FlashScreen() {
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Spacer(modifier = Modifier.height(40.dp))
-
-        Image(
-            painter = painterResource(id = R.drawable.logo),
-            contentDescription = "hungnh219",
-            modifier = Modifier
-                .fillMaxWidth()
-        )
-
-        Spacer(modifier = Modifier.height(60.dp))
-
-        Text(
-            text = "Welcome to Sudoku Game",
-            fontSize = 32.sp,
-            fontWeight = FontWeight.Bold
-        )
-
-        Spacer(modifier = Modifier.height(60.dp))
-
-        Button(
-            onClick = {},
-            modifier = Modifier
-                .width(200.dp)
-                .height(60.dp)
-        ) {
-            Text("next")
-        }
-    }
-}
-
-@Composable
-fun TestSplashScreen() {
+fun SplashScreen() {
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -275,7 +278,7 @@ fun TestSplashScreen() {
 }
 
 @Composable
-fun TestHomeScreen() {
+fun HomeScreen() {
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -299,21 +302,27 @@ fun TestHomeScreen() {
 
 @Composable
 fun SudokuApp(modifier: Modifier = Modifier) {
+
 //    HomeScreen()
 //    GameScreen()
-//    FlashScreen()
-    TestSplashScreen()
-//    TestHomeScreen()
+    SplashScreen()
 }
 
-
+// su dung navigation tu ham nay
 @Preview(
     showBackground = true,
     showSystemUi = true,
 )
 @Composable
 fun GreetingPreview() {
+    val navController = rememberNavController()
+
     SudokuTheme {
-        SudokuApp()
+        NavHost(navController = navController, startDestination = "home") {
+            composable("home") {
+                SudokuApp()
+            }
+        }
+//        SudokuApp()
     }
 }
