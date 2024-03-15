@@ -297,7 +297,7 @@ fun SplashScreen(moveToHomeScreen: () -> Unit) {
 }
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(goToGameScreen: () -> Unit) {
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -308,21 +308,104 @@ fun HomeScreen() {
             modifier = Modifier
                 .matchParentSize()
         )
-//
-//        Image(
-//            painter = painterResource(id = R.drawable.splash_background),
-//            contentDescription = "hungnh219",
-//            contentScale = ContentScale.FillBounds,
-//            modifier = Modifier
-//                .matchParentSize()
-//        )
+
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier
+                .fillMaxWidth()
+                .offset(y = 160.dp)
+        ) {
+            Text(
+                text = "sudoku".uppercase(),
+                fontFamily = FontFamily(Font(R.font.bauhs93)),
+                fontSize = 64.sp,
+            )
+            Text(
+                text = "hh".uppercase(),
+                fontFamily = FontFamily(Font(R.font.algerianregular)),
+                fontSize = 40.sp,
+            )
+        }
+
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier
+                .fillMaxWidth()
+                .offset(y = 480.dp)
+        ) {
+            Button (
+                onClick = { goToGameScreen() },
+                colors = ButtonDefaults.buttonColors(
+                    Color.White
+                ),
+                shape = RoundedCornerShape(12.dp),
+                border = BorderStroke(2.dp, Color.Black),
+                modifier = Modifier
+                    .width(260.dp)
+                    .height(48.dp)
+            ) {
+                Text(
+                    text = "Continue".uppercase(),
+                    fontFamily = FontFamily(Font(R.font.algerianregular)),
+                    fontSize = 32.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Black,
+                )
+            }
+
+            Spacer(modifier = Modifier.height(20.dp))
+
+            Button (
+                onClick = { goToGameScreen() },
+                colors = ButtonDefaults.buttonColors(
+                    Color.White
+                ),
+                shape = RoundedCornerShape(12.dp),
+                border = BorderStroke(2.dp, Color.Black),
+                modifier = Modifier
+                    .width(260.dp)
+                    .height(48.dp)
+            ) {
+                Text(
+                    text = "New".uppercase(),
+                    fontFamily = FontFamily(Font(R.font.algerianregular)),
+                    fontSize = 32.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Black,
+                )
+            }
+
+            Spacer(modifier = Modifier.height(20.dp))
+
+            Button (
+                onClick = {},
+                colors = ButtonDefaults.buttonColors(
+                    Color.White
+                ),
+                shape = RoundedCornerShape(12.dp),
+                border = BorderStroke(2.dp, Color.Black),
+                modifier = Modifier
+                    .width(260.dp)
+                    .height(48.dp)
+            ) {
+                Text(
+                    text = "About".uppercase(),
+                    fontFamily = FontFamily(Font(R.font.algerianregular)),
+                    fontSize = 32.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Black,
+                )
+            }
+        }
+
+
     }
 }
 
 @Composable
 fun SudokuApp(modifier: Modifier = Modifier) {
 
-    HomeScreen()
+//    HomeScreen()
 //    GameScreen()
 //    SplashScreen()
 }
@@ -341,7 +424,7 @@ fun GreetingPreview() {
 
             // route: home
             composable("home") {
-                HomeScreen()
+                HomeScreen( goToGameScreen = { navController.navigate("game")})
             }
 
             // route: splash
