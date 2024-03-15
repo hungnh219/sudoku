@@ -7,6 +7,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -28,6 +29,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -63,98 +66,123 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-//fun Plus2Numbers(firstNum: Int, secondNum: Int) {
-//    return firstNum + secondNum;
-//}
-//
-//@Composable
-//fun HomeScreen() {
-//    Column(
-//        horizontalAlignment = Alignment.CenterHorizontally
-//    ) {
-//        Spacer(modifier = Modifier.height(60.dp))
-//
-//        Text(
-//            text = "this is the sudoku board!",
-//            fontSize = 24.sp,
-//            fontWeight = FontWeight.Bold,
-//            textAlign = TextAlign.Center,
-//            modifier = Modifier
-//                .background(Color.Red)
-//                .fillMaxWidth()
-//                .padding(horizontal = 20.dp)
-//        )
-//
-//        Spacer(modifier = Modifier.height(40.dp))
-//
-//        Image(
-//            painter = painterResource(id = R.drawable.logo),
-//            contentDescription = "hungnh219",
-//            modifier = Modifier
-//                .clip(RoundedCornerShape(45))
-//                .size(height = 300.dp, width = 700.dp)
-//        )
-//
-//        Spacer(modifier = Modifier.height(80.dp))
-//
-//        Button(
-//            onClick = {},
-//            colors = ButtonDefaults.buttonColors(
-//                contentColor = Color.Green,
-//                containerColor = Color.Gray
-//            ),
-//            modifier = Modifier
-//                .width(300.dp)
-//        ) {
-//            Text("Continue")
-//        }
-//
-//        Spacer(modifier = Modifier.height(20.dp))
-//
-//        Button(
-//            onClick = {},
-//            modifier = Modifier
-//                .width(300.dp)
-//        ) {
-//            Text("New game")
-//        }
-//
-//        Spacer(modifier = Modifier.height(20.dp))
-//
-//        Button(
-//            onClick = {},
-//            modifier = Modifier
-//                .width(300.dp)
-//        ) {
-//            Text("About us")
-//        }
-//    }
-//}
-
 @Composable
-fun GameScreen() {
+fun GameScreen(goToHomeScreen: () -> Unit) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Spacer(modifier = Modifier.height(20.dp))
+        val num = remember { mutableStateOf("")}
+        val isClicked = remember { mutableStateOf(false) }
+
+        Button(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 280.dp, end = 20.dp, top = 20.dp),
+            onClick = { goToHomeScreen() },
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color.White
+            ),
+            shape = RoundedCornerShape(16.dp),
+            border = BorderStroke(2.dp, Color.Black)
+        ) {
+            Text(
+                text = "Back".uppercase(),
+                fontFamily = FontFamily(Font(R.font.algerianregular)),
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.Black,
+            )
+        }
 
         Row(
             modifier = Modifier
                 .height(60.dp)
                 .fillMaxWidth()
                 .background(Color.Magenta)
+            ,
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
         ) {
+            Button(
+                modifier = Modifier
+                    .width(60.dp)
+                    .height(60.dp),
+                onClick = { if (isClicked.value) num.value = "1" },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color.White
+                ),
+                shape = RoundedCornerShape(16.dp),
+                border = BorderStroke(2.dp, Color.Black)
+            ) {
+                Text(
+                    text = "1".uppercase(),
+                    fontFamily = FontFamily(Font(R.font.algerianregular)),
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Black,
+                )
+            }
+
+            Button(
+                modifier = Modifier
+                    .width(60.dp)
+                    .height(60.dp),
+                onClick = { if (isClicked.value) num.value = "2" },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color.White
+                ),
+                shape = RoundedCornerShape(16.dp),
+                border = BorderStroke(2.dp, Color.Black)
+            ) {
+                Text(
+                    text = "2".uppercase(),
+                    fontFamily = FontFamily(Font(R.font.algerianregular)),
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Black,
+                )
+            }
+
+            Button(
+                modifier = Modifier
+                    .width(60.dp)
+                    .height(60.dp),
+                onClick = { if (isClicked.value) num.value = "3" },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color.White
+                ),
+                shape = RoundedCornerShape(16.dp),
+                border = BorderStroke(2.dp, Color.Black)
+            ) {
+                Text(
+                    text = "3".uppercase(),
+                    fontFamily = FontFamily(Font(R.font.algerianregular)),
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Black,
+                )
+            }
         }
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        Row(
+        Box(
             modifier = Modifier
                 .height(60.dp)
-                .fillMaxWidth()
+                .width(60.dp)
                 .background(Color.Cyan)
+                .border(
+                    width = if (isClicked.value) 2.dp else 0.dp,
+                    color = if (isClicked.value) Color.Red else Color.Transparent
+                )
+                .clickable {
+                    isClicked.value = !isClicked.value
+                },
+            contentAlignment = Alignment.Center
         ) {
-
+            Text(
+                text = "${num.value}",
+            )
         }
 
         Spacer(modifier = Modifier.height(20.dp))
@@ -165,7 +193,11 @@ fun GameScreen() {
                 .width(360.dp)
                 .background(Color.LightGray)
         ) {
-
+            Text(
+                text = "hung",
+                modifier = Modifier
+                    .matchParentSize()
+            )
         }
 
         Spacer(modifier = Modifier.height(40.dp))
@@ -191,41 +223,6 @@ fun GameScreen() {
         }
     }
 }
-//
-//@Composable
-//fun FlashScreen() {
-//    Column(
-//        horizontalAlignment = Alignment.CenterHorizontally
-//    ) {
-//        Spacer(modifier = Modifier.height(40.dp))
-//
-//        Image(
-//            painter = painterResource(id = R.drawable.logo),
-//            contentDescription = "hungnh219",
-//            modifier = Modifier
-//                .fillMaxWidth()
-//        )
-//
-//        Spacer(modifier = Modifier.height(60.dp))
-//
-//        Text(
-//            text = "Welcome to Sudoku Game",
-//            fontSize = 32.sp,
-//            fontWeight = FontWeight.Bold
-//        )
-//
-//        Spacer(modifier = Modifier.height(60.dp))
-//
-//        Button(
-//            onClick = {},
-//            modifier = Modifier
-//                .width(200.dp)
-//                .height(60.dp)
-//        ) {
-//            Text("next")
-//        }
-//    }
-//}
 
 @Composable
 fun SplashScreen(moveToHomeScreen: () -> Unit) {
@@ -420,8 +417,7 @@ fun GreetingPreview() {
     val navController = rememberNavController()
 
     SudokuTheme {
-        NavHost(navController = navController, startDestination = "home") {
-
+        NavHost(navController = navController, startDestination = "game") {
             // route: home
             composable("home") {
                 HomeScreen( goToGameScreen = { navController.navigate("game")})
@@ -434,7 +430,7 @@ fun GreetingPreview() {
 
             // route: game
             composable("game") {
-                GameScreen()
+                GameScreen( goToHomeScreen = { navController.navigate("home")})
             }
         }
 //        SudokuApp()
