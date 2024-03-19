@@ -37,6 +37,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -687,6 +688,39 @@ fun GameScreen(goToHomeScreen: () -> Unit) {
                 )
             }
         }
+
+        AlertDialog(
+            icon = {
+                Icon(Icons.Default.Notifications,
+                    contentDescription = "help")
+            },
+            title = {
+                Text(text = "test alert")
+            },
+            text = {
+                Text(text = "noi dung alert")
+            },
+            onDismissRequest = {
+
+            },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+
+                    }
+                ) {
+                    Text("Confirm")
+                }
+            },
+            dismissButton = {
+                TextButton(
+                    onClick = {
+                    }
+                ) {
+                    Text("Dismiss")
+                }
+            }
+        )
     }
 }
 
@@ -888,7 +922,7 @@ fun GreetingPreview() {
     val navController = rememberNavController()
 
     SudokuTheme {
-        NavHost(navController = navController, startDestination = "game") {
+        NavHost(navController = navController, startDestination = "splash") {
             // route: home
             composable("home") {
                 HomeScreen(
