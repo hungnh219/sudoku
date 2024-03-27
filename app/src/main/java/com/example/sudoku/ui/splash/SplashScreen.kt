@@ -25,12 +25,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.sudoku.ui.theme.SudokuTheme
 import com.example.sudoku.R
+
+import com.example.sudoku.ui.theme.SudokuTheme
+import androidx.navigation.NavController
 
 
 @Composable
-fun FakeSplashScreen() {
+fun FakeSplashScreen( goToHomeScreen: () -> Unit) {
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -70,7 +72,7 @@ fun FakeSplashScreen() {
 //                    color = Color.Black,
 //                    shape = RoundedCornerShape(12.dp)
 //                ),
-            onClick = {},
+            onClick = { goToHomeScreen() },
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color.White
             ),
@@ -105,6 +107,6 @@ fun FakeSplashScreen() {
 )
 fun SplashScreenPreview() {
     SudokuTheme {
-        FakeSplashScreen()
+        FakeSplashScreen({})
     }
 }
