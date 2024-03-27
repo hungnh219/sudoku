@@ -25,15 +25,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.sudoku.ui.theme.SudokuTheme
 import com.example.sudoku.R
 
 
-@Preview(
-    showBackground = true,
-    showSystemUi = true,
-)
 @Composable
-fun SplashScreen(moveToHomeScreen: () -> Unit) {
+fun FakeSplashScreen() {
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -57,7 +54,7 @@ fun SplashScreen(moveToHomeScreen: () -> Unit) {
                 fontSize = 72.sp,
             )
             Text(
-                text = "hh".uppercase(),
+                text = "fake splash".uppercase(),
                 fontFamily = FontFamily(Font(R.font.algerianregular)),
                 fontSize = 56.sp,
             )
@@ -73,7 +70,7 @@ fun SplashScreen(moveToHomeScreen: () -> Unit) {
 //                    color = Color.Black,
 //                    shape = RoundedCornerShape(12.dp)
 //                ),
-            onClick = { moveToHomeScreen() },
+            onClick = {},
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color.White
             ),
@@ -98,5 +95,16 @@ fun SplashScreen(moveToHomeScreen: () -> Unit) {
                 .offset(y = 240.dp)
 //                .align(Alignment.Center)
         )
+    }
+}
+
+@Composable
+@Preview(
+    showSystemUi = true,
+    showBackground = true
+)
+fun SplashScreenPreview() {
+    SudokuTheme {
+        FakeSplashScreen()
     }
 }

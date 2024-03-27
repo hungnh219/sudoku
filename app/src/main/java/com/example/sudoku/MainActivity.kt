@@ -59,6 +59,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.sudoku.ui.theme.SudokuTheme
+import com.example.sudoku.ui.splash.FakeSplashScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -78,7 +79,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun GameScreen(goToHomeScreen: () -> Unit) {
+fun GameScreen(goToHomeScreen: () -> Unit, goToFakeSplashScreen: () -> Unit) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
@@ -135,7 +136,7 @@ fun GameScreen(goToHomeScreen: () -> Unit) {
             Button(
                 modifier = Modifier
                     .width(88.dp),
-                onClick = { goToHomeScreen() },
+                onClick = { goToFakeSplashScreen() },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color.White
                 ),
@@ -302,39 +303,6 @@ fun GameScreen(goToHomeScreen: () -> Unit) {
                 )
             }
         }
-//
-//        LazyRow() {
-//            items(isClickedList) { number ->
-//                Text(text = "${number.value}")
-//            }
-//        }
-//
-//        Spacer(modifier = Modifier.height(20.dp))
-//
-//        Button(
-//            modifier = Modifier
-//                .width(200.dp)
-//                .height(60.dp),
-//            onClick = {
-//                      for (i in 0..1) {
-//                          if (isClickedList[i].value)
-//                              numList[i].value = ""
-//                      }
-//            },
-//            colors = ButtonDefaults.buttonColors(
-//                containerColor = Color.White
-//            ),
-//            shape = RoundedCornerShape(16.dp),
-//            border = BorderStroke(2.dp, Color.Black)
-//        ) {
-//            Text(
-//                text = "Erase".uppercase(),
-//                fontFamily = FontFamily(Font(R.font.bauhs93)),
-//                fontSize = 20.sp,
-//                fontWeight = FontWeight.Bold,
-//                color = Color.Black,
-//            )
-//        }
 
         Spacer(modifier = Modifier.height(20.dp))
 
@@ -688,39 +656,6 @@ fun GameScreen(goToHomeScreen: () -> Unit) {
                 )
             }
         }
-
-        AlertDialog(
-            icon = {
-                Icon(Icons.Default.Notifications,
-                    contentDescription = "help")
-            },
-            title = {
-                Text(text = "test alert")
-            },
-            text = {
-                Text(text = "noi dung alert")
-            },
-            onDismissRequest = {
-
-            },
-            confirmButton = {
-                TextButton(
-                    onClick = {
-
-                    }
-                ) {
-                    Text("Confirm")
-                }
-            },
-            dismissButton = {
-                TextButton(
-                    onClick = {
-                    }
-                ) {
-                    Text("Dismiss")
-                }
-            }
-        )
     }
 }
 
@@ -938,7 +873,14 @@ fun GreetingPreview() {
 
             // route: game
             composable("game") {
-                GameScreen( goToHomeScreen = { navController.navigate("home")})
+                GameScreen(
+                    goToHomeScreen = { navController.navigate("home")},
+                    goToFakeSplashScreen = { navController.navigate("fakeSplash")}
+                    )
+            }
+
+            composable("fakeSplash") {
+                FakeSplashScreen()
             }
         }
 //        SudokuApp()
