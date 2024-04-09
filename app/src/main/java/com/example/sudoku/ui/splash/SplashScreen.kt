@@ -29,10 +29,11 @@ import com.example.sudoku.R
 
 import com.example.sudoku.ui.theme.SudokuTheme
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 
 
 @Composable
-fun FakeSplashScreen( goToHomeScreen: () -> Unit) {
+fun FakeSplashScreen(navController: NavController, goToHomeScreen: () -> Unit) {
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -72,7 +73,7 @@ fun FakeSplashScreen( goToHomeScreen: () -> Unit) {
 //                    color = Color.Black,
 //                    shape = RoundedCornerShape(12.dp)
 //                ),
-            onClick = { goToHomeScreen() },
+            onClick = { navController.navigate("home") },
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color.White
             ),
@@ -106,7 +107,8 @@ fun FakeSplashScreen( goToHomeScreen: () -> Unit) {
     showBackground = true
 )
 fun SplashScreenPreview() {
+    val navController = rememberNavController()
     SudokuTheme {
-        FakeSplashScreen({})
+        FakeSplashScreen(navController, {})
     }
 }

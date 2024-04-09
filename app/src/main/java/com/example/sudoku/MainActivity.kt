@@ -880,7 +880,7 @@ fun GreetingPreview() {
             }
 
             composable("fakeSplash") {
-                FakeSplashScreen( goToHomeScreen = { navController.navigate("home")})
+                FakeSplashScreen(navController, { navController.navigate("home")})
             }
         }
 //        SudokuApp()
