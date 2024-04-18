@@ -33,7 +33,7 @@ import androidx.navigation.compose.rememberNavController
 
 
 @Composable
-fun FakeSplashScreen(navController: NavController, goToHomeScreen: () -> Unit) {
+fun SplashScreen(navController: NavController) {
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -57,22 +57,15 @@ fun FakeSplashScreen(navController: NavController, goToHomeScreen: () -> Unit) {
                 fontSize = 72.sp,
             )
             Text(
-                text = "fake splash".uppercase(),
+                text = "hh".uppercase(),
                 fontFamily = FontFamily(Font(R.font.algerianregular)),
                 fontSize = 56.sp,
             )
         }
         Button(
             modifier = Modifier
-//                .width(80.dp)
                 .fillMaxWidth()
                 .padding(start = 280.dp, end = 20.dp, top = 20.dp),
-//                .offset(y = 200.dp)
-//                .border(
-//                    width = 2.dp,
-//                    color = Color.Black,
-//                    shape = RoundedCornerShape(12.dp)
-//                ),
             onClick = { navController.navigate("home") },
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color.White
@@ -92,11 +85,9 @@ fun FakeSplashScreen(navController: NavController, goToHomeScreen: () -> Unit) {
         Image(
             painter = painterResource(id = R.drawable.splash_sudoku_board),
             contentDescription = "hungnh219",
-//            contentScale = ContentScale.FillBounds,
             modifier = Modifier
                 .size(400.dp)
                 .offset(y = 240.dp)
-//                .align(Alignment.Center)
         )
     }
 }
@@ -109,6 +100,6 @@ fun FakeSplashScreen(navController: NavController, goToHomeScreen: () -> Unit) {
 fun SplashScreenPreview() {
     val navController = rememberNavController()
     SudokuTheme {
-        FakeSplashScreen(navController, {})
+        SplashScreen(navController)
     }
 }
