@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.sudoku.R
+import com.example.sudoku.ui.home.components.HomeButton
 
 import com.example.sudoku.ui.theme.SudokuTheme
 
@@ -69,69 +70,73 @@ fun HomeScreen(navController: NavController) {
                 .fillMaxWidth()
                 .offset(y = 480.dp)
         ) {
-            Button (
-                onClick = { navController.navigate("game") },
-                colors = ButtonDefaults.buttonColors(
-                    Color.White
-                ),
-                shape = RoundedCornerShape(12.dp),
-                border = BorderStroke(2.dp, Color.Black),
-                modifier = Modifier
-                    .width(260.dp)
-                    .height(48.dp)
-            ) {
-                Text(
-                    text = "Continue".uppercase(),
-                    fontFamily = FontFamily(Font(R.font.algerianregular)),
-                    fontSize = 32.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.Black,
-                )
-            }
+//            Button (
+//                onClick = { navController.navigate("game") },
+//                colors = ButtonDefaults.buttonColors(
+//                    Color.White
+//                ),
+//                shape = RoundedCornerShape(12.dp),
+//                border = BorderStroke(2.dp, Color.Black),
+//                modifier = Modifier
+//                    .width(260.dp)
+//                    .height(48.dp)
+//            ) {
+//                Text(
+//                    text = "Continue".uppercase(),
+//                    fontFamily = FontFamily(Font(R.font.algerianregular)),
+//                    fontSize = 32.sp,
+//                    fontWeight = FontWeight.Bold,
+//                    color = Color.Black,
+//                )
+//            }
+//
+//            Spacer(modifier = Modifier.height(20.dp))
+//
+//            Button (
+//                onClick = { navController.navigate("game") },
+//                colors = ButtonDefaults.buttonColors(
+//                    Color.White
+//                ),
+//                shape = RoundedCornerShape(12.dp),
+//                border = BorderStroke(2.dp, Color.Black),
+//                modifier = Modifier
+//                    .width(260.dp)
+//                    .height(48.dp)
+//            ) {
+//                Text(
+//                    text = "New".uppercase(),
+//                    fontFamily = FontFamily(Font(R.font.algerianregular)),
+//                    fontSize = 32.sp,
+//                    fontWeight = FontWeight.Bold,
+//                    color = Color.Black,
+//                )
+//            }
+//
+//            Spacer(modifier = Modifier.height(20.dp))
+//
+//            Button (
+//                onClick = { navController.navigate("game") },
+//                colors = ButtonDefaults.buttonColors(
+//                    Color.White
+//                ),
+//                shape = RoundedCornerShape(12.dp),
+//                border = BorderStroke(2.dp, Color.Black),
+//                modifier = Modifier
+//                    .width(260.dp)
+//                    .height(48.dp)
+//            ) {
+//                Text(
+//                    text = "About".uppercase(),
+//                    fontFamily = FontFamily(Font(R.font.algerianregular)),
+//                    fontSize = 32.sp,
+//                    fontWeight = FontWeight.Bold,
+//                    color = Color.Black,
+//                )
+//            }
 
-            Spacer(modifier = Modifier.height(20.dp))
-
-            Button (
-                onClick = { navController.navigate("game") },
-                colors = ButtonDefaults.buttonColors(
-                    Color.White
-                ),
-                shape = RoundedCornerShape(12.dp),
-                border = BorderStroke(2.dp, Color.Black),
-                modifier = Modifier
-                    .width(260.dp)
-                    .height(48.dp)
-            ) {
-                Text(
-                    text = "New".uppercase(),
-                    fontFamily = FontFamily(Font(R.font.algerianregular)),
-                    fontSize = 32.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.Black,
-                )
-            }
-
-            Spacer(modifier = Modifier.height(20.dp))
-
-            Button (
-                onClick = { navController.navigate("game") },
-                colors = ButtonDefaults.buttonColors(
-                    Color.White
-                ),
-                shape = RoundedCornerShape(12.dp),
-                border = BorderStroke(2.dp, Color.Black),
-                modifier = Modifier
-                    .width(260.dp)
-                    .height(48.dp)
-            ) {
-                Text(
-                    text = "About".uppercase(),
-                    fontFamily = FontFamily(Font(R.font.algerianregular)),
-                    fontSize = 32.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.Black,
-                )
-            }
+            HomeButton(onClick = { navController.navigate("game") }, title = "continue")
+            HomeButton(onClick = { navController.navigate("game") }, title = "new")
+            HomeButton(onClick = { navController.navigate("game") }, title = "about")
         }
     }
 }
