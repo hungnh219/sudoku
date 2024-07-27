@@ -14,6 +14,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -30,10 +31,16 @@ import com.example.sudoku.R
 import com.example.sudoku.ui.theme.SudokuTheme
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import kotlinx.coroutines.delay
 
 
 @Composable
 fun SplashScreen(navController: NavController) {
+
+//    use launchedeffect for delay time
+    LaunchedEffect(true) {
+        delay(5000)
+    }
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -66,7 +73,8 @@ fun SplashScreen(navController: NavController) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 280.dp, end = 20.dp, top = 20.dp),
-            onClick = { navController.navigate("home") },
+            onClick = {
+                      },
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color.White
             ),
@@ -99,6 +107,11 @@ fun SplashScreen(navController: NavController) {
 )
 fun SplashScreenPreview() {
     val navController = rememberNavController()
+
+//    LaunchedEffect(1) {
+//        delay(3000)
+//        navController.navigate("home")
+//    }
     SudokuTheme {
         SplashScreen(navController)
     }
